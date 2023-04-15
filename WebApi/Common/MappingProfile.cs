@@ -1,5 +1,6 @@
 using AutoMapper;
 using WebApi.Entities;
+using static WebApi.Application.CustomerOperations.Commands.CreateCustomer.CreateCustomerCommand;
 using static WebApi.Application.GameOperations.Commands.CreateGame.CreateGameCommand;
 using static WebApi.Application.GameOperations.Commands.UpdateGame.UpdateGameCommand;
 using static WebApi.Application.GameOperations.Queries.GetGameDetail.GetGameDetailQuery;
@@ -33,5 +34,7 @@ public class MappingProfile: Profile
         CreateMap<UpdatePublisherModel, Publisher>();
         CreateMap<Publisher, PublisherViewModel>().ForMember(dest => dest.Games, opt => opt.MapFrom(src => src.Games.Select(x => x.Name)));
         CreateMap<Publisher, PublisherDetailViewModel>().ForMember(dest => dest.Games, opt => opt.MapFrom(src => src.Games.Select(x => x.Name)));
+
+        CreateMap<CreateCustomerModel, Customer>();
     }
 }

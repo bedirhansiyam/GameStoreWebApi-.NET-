@@ -9,6 +9,7 @@ public class GameStoreDbContext : DbContext, IGameStoreDbContext
     public DbSet<Game> Games { get; set; }
     public DbSet<Genre> Genres { get; set; }
     public DbSet<Publisher> Publishers { get; set; }
+    public DbSet<Customer> Customers { get; set; }
 
     public int SaveChanges()
     {

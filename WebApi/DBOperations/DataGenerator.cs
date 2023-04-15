@@ -69,6 +69,37 @@ public class DataGenerator
                 context.Publishers.Add(publisher3);
                 context.SaveChanges();
             }
+
+            if(context.Customers.Any())
+            {
+                return;
+            }
+            else
+            {
+                context.Customers.AddRange(
+                    new Customer
+                    {
+                        Name = "Bedirhan",
+                        Surname = "Siyam",
+                        Email = "bedirhan@mail.com",
+                        Password = "123456789"
+                    },
+                    new Customer
+                    {
+                        Name = "Arda",
+                        Surname = "Güler",
+                        Email = "arda@mail.com",
+                        Password = "123456789"
+                    },
+                    new Customer
+                    {
+                        Name = "Enner",
+                        Surname = "Valencia",
+                        Email = "enner@mail.com",
+                        Password = "123456789"
+                    });
+            }
+            context.SaveChanges();
         }
     }
 }
