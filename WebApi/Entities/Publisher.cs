@@ -9,5 +9,5 @@ public class Publisher
     public string Name { get; set; }
     public int NumberOfEmployees { get; set; }
     public DateTime FoundationDate  { get; set; }
-    public List<Game> Games { get; set; }
+    public virtual ICollection<Game> Games { get; set; }
 }
