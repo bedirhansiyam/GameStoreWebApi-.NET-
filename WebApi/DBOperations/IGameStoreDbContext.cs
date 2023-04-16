@@ -9,6 +9,7 @@ public interface IGameStoreDbContext
     DbSet<Genre> Genres { get; set;} 
     DbSet<Publisher> Publishers { get; set;}
     DbSet<Customer> Customers { get; set;}
+    DbSet<Order> Orders { get; set;}
 
     int SaveChanges();
 }

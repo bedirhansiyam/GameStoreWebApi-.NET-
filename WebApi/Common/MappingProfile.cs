@@ -9,6 +9,9 @@ using static WebApi.Application.GenreOperations.Commands.CreateGenre.CreateGenre
 using static WebApi.Application.GenreOperations.Commands.UpdateGenre.UpdateGenreCommand;
 using static WebApi.Application.GenreOperations.Queries.GenGenreDetail.GetGenreDetailQuery;
 using static WebApi.Application.GenreOperations.Queries.GetGenres.GetGenresQuery;
+using static WebApi.Application.OrderOperations.Commands.CreateOrder.CreateOrderCommand;
+using static WebApi.Application.OrderOperations.Queries.GetOrderDetail.GetOrderDetailQuery;
+using static WebApi.Application.OrderOperations.Queries.GetOrders.GetOrdersQuery;
 using static WebApi.Application.PublisherOperations.Command.CreatePublisher.CreatePublisherCommand;
 using static WebApi.Application.PublisherOperations.Command.UpdatePublisher.UpdatePublisherCommand;
 using static WebApi.Application.PublisherOperations.Queries.GetPublisherDetail.GetPublisherDetailQuery;
@@ -36,5 +39,9 @@ public class MappingProfile: Profile
         CreateMap<Publisher, PublisherDetailViewModel>().ForMember(dest => dest.Games, opt => opt.MapFrom(src => src.Games.Select(x => x.Name)));
 
         CreateMap<CreateCustomerModel, Customer>();
+
+        CreateMap<CreateOrderModel, Order>();
+        CreateMap<Order, OrderViewModel>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name + " " + src.Customer.Surname)).ForMember(dest => dest.GameName, opt => opt.MapFrom(src => src.Game));
+        CreateMap<Order, OrderDetailViewModel>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name + " " + src.Customer.Surname)).ForMember(dest => dest.GameName, opt => opt.MapFrom(src => src.Game));
     }
 }
