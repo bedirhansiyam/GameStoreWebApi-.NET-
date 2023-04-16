@@ -2,9 +2,13 @@ using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Application.CustomerOperations.Commands.CreateCustomer;
+using WebApi.Application.CustomerOperations.Commands.CreateToken;
 using WebApi.Application.CustomerOperations.Commands.DeleteCustomer;
+using WebApi.Application.CustomerOperations.Commands.RefreshToken;
 using WebApi.DBOperations;
+using WebApi.TokenOperations.Models;
 using static WebApi.Application.CustomerOperations.Commands.CreateCustomer.CreateCustomerCommand;
+using static WebApi.Application.CustomerOperations.Commands.CreateToken.CreateTokenCommand;
 using static WebApi.Application.CustomerOperations.Commands.DeleteCustomer.DeleteCustomerCommand;
 
 namespace WebApi.Controllers;
@@ -51,5 +55,27 @@ public class CustomerController: ControllerBase
         command.Handle();
         
         return Ok();
+    }
+
+    [HttpPost("connect/token")]
+    public ActionResult<Token> CreateToken([FromBody] CreateTokenModel Login)
+    {
+        CreateTokenCommand command = new CreateTokenCommand(_dbContext, _configuration);
+        command.Model = Login;
+
+        var token = command.TokenHandle();
+
+        return token;
+    }
+
+    [HttpGet("refreshToken")]
+    public ActionResult<Token> RefreshToken([FromQuery] string token)
+    {
+        RefreshTokenCommand command = new RefreshTokenCommand(_dbContext, _configuration);
+        command.RefreshToken = token;
+
+        var newToken = command.Handle();
+
+        return newToken;
     }
 }

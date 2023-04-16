@@ -41,7 +41,7 @@ public class MappingProfile: Profile
         CreateMap<CreateCustomerModel, Customer>();
 
         CreateMap<CreateOrderModel, Order>();
-        CreateMap<Order, OrderViewModel>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name + " " + src.Customer.Surname)).ForMember(dest => dest.GameName, opt => opt.MapFrom(src => src.Game));
-        CreateMap<Order, OrderDetailViewModel>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name + " " + src.Customer.Surname)).ForMember(dest => dest.GameName, opt => opt.MapFrom(src => src.Game));
+        CreateMap<Order, OrderViewModel>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name + " " + src.Customer.Surname)).ForMember(dest => dest.GameName, opt => opt.MapFrom(src => src.Game.Name));
+        CreateMap<Order, OrderDetailViewModel>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name + " " + src.Customer.Surname)).ForMember(dest => dest.GameName, opt => opt.MapFrom(src => src.Game.Name));
     }
 }

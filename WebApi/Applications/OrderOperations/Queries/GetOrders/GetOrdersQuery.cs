@@ -1,6 +1,8 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebApi.DBOperations;
+using WebApi.Entities;
+using static WebApi.Application.GameOperations.Queries.GetGames.GetGamesQuery;
 
 namespace WebApi.Application.OrderOperations.Queries.GetOrders;
 

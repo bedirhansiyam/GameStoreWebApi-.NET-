@@ -1,5 +1,6 @@
 using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Application.OrderOperations.Commands.CreateOrder;
 using WebApi.Application.OrderOperations.Commands.DeleteOrder;
@@ -10,6 +11,7 @@ using static WebApi.Application.OrderOperations.Commands.CreateOrder.CreateOrder
 
 namespace WebApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[Controller]s")]
 public class OrderController: ControllerBase
